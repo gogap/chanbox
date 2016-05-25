@@ -1,18 +1,21 @@
 package chanbox
 
 import (
-	"github.com/gogap/chanbox/box/mock"
-
 	"testing"
+
+	"github.com/gogap/chanbox/box"
+
+	_ "github.com/gogap/chanbox/box/mock"
 )
 
 func TestSendAndReceive(t *testing.T) {
 
-	mockbox := new(mock.MockBox)
+	intbox, _ := box.NewInbox("MockBox")
+	outbox, _ := box.NewOutbox("MockBox")
 
 	cbox, err := New(
-		Inboxes(mockbox),
-		Outboxes(mockbox),
+		Inboxes(intbox),
+		Outboxes(outbox),
 	)
 
 	if err != nil {

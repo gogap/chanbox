@@ -16,6 +16,23 @@ type MockBox struct {
 	locker  sync.Mutex
 }
 
+var (
+	mockBox = MockBox{}
+)
+
+func init() {
+	box.RegisterInbox("MockBox", NewMockInbox)
+	box.RegisterOutbox("MockBox", NewMockOutbox)
+}
+
+func NewMockInbox(opts box.Options) (boxs box.Inbox, err error) {
+	return &mockBox, nil
+}
+
+func NewMockOutbox(opts box.Options) (boxs box.Outbox, err error) {
+	return &mockBox, nil
+}
+
 func (p *MockBox) String() string {
 	return "MockBox"
 }

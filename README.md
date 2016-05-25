@@ -4,12 +4,19 @@ chanbox is a chan usage like and could with different transports
 
 ### Usage
 
+We need import box driver first
+
 ```go
-	mockbox := new(mock.MockBox)
+	import _ "github.com/gogap/chanbox/box/mock"
+```
+
+```go
+	intbox, _ := box.NewInbox("MockBox")
+	outbox, _ := box.NewOutbox("MockBox")
 
 	cbox, err := New(
-		Inboxes(mockbox),
-		Outboxes(mockbox),
+		Inboxes(intbox),
+		Outboxes(outbox),
 	)
 
 	if err != nil {

@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/gogap/chanbox/box"
-	"golang.org/x/net/context"
 )
 
 type Option func(*Options)
@@ -14,8 +13,6 @@ type Options struct {
 	Outboxes []box.Outbox
 	Buffer   int
 	Timeout  time.Duration
-
-	Context context.Context
 }
 
 func Buffer(buf int) Option {
